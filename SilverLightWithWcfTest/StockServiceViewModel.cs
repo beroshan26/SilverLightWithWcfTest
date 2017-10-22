@@ -14,13 +14,31 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using SilverLightWithWcfTest.StockServiceRef;
+using SilverLightWithWcfTest.WebMesageSvc;
 
 namespace SilverLightWithWcfTest
 {
     public class StockServiceViewModel: INotifyPropertyChanged
     {
         private ICommand _getStockPricesCommand;
+
+        private ICommand _getWebMessageCommand;
+
+        private string _webMessage;
+
+        public string WebMessage
+        {
+            get { return _webMessage; }
+            set
+            {
+                _webMessage = value;
+                NotifyPropertyChanged("WebMessage");
+            }
+        }
+
         readonly StockServiceClient _client = new StockServiceClient();
+
+        WebMesageSvc.Service1SoapClient _webSvcClient = new Service1SoapClient();
 
         private ObservableCollection<StockPriceContract> _stockPricesColl;
 
@@ -42,6 +60,9 @@ namespace SilverLightWithWcfTest
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(2);
             _timer.Tick += _timer_Tick;
+
+            _webSvcClient.HelloWorldCompleted += _webSvcClient_HelloWorldCompleted;
+            _client.GetStockPricesCompleted += client_GetStockPricesCompleted; 
         }
 
         void _timer_Tick(object sender, EventArgs e)
@@ -54,15 +75,30 @@ namespace SilverLightWithWcfTest
             {
                 if (_getStockPricesCommand == null)
                 {
-                    _getStockPricesCommand = new RelayCommand(a =>
-                    {
-                        _client.GetStockPricesCompleted += client_GetStockPricesCompleted; 
-                        _timer.Start();
-                    });
+                    _getStockPricesCommand = new RelayCommand(a => _timer.Start());
                 }
                 return _getStockPricesCommand;
             }
             set { _getStockPricesCommand = value; }
+        }
+
+
+        public ICommand GetWebMessageCommand
+        {
+            get
+            {
+                if (_getWebMessageCommand == null)
+                {
+                    _getWebMessageCommand = new RelayCommand(a => _webSvcClient.HelloWorldAsync());
+                }
+                return _getWebMessageCommand;
+            }
+            set { _getWebMessageCommand = value; }
+        }
+
+        void _webSvcClient_HelloWorldCompleted(object sender, HelloWorldCompletedEventArgs e)
+        {
+            WebMessage = e.Result;
         }
 
         void client_GetStockPricesCompleted(object sender, GetStockPricesCompletedEventArgs e)

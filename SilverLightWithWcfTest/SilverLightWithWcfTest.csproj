@@ -90,6 +90,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WebMesageSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="StockServiceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,13 +122,27 @@
     <None Include="Service References\StockServiceRef\StockService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\WebMesageSvc\Service1.disco" />
+    <None Include="Service References\WebMesageSvc\configuration91.svcinfo" />
+    <None Include="Service References\WebMesageSvc\configuration.svcinfo" />
+    <None Include="Service References\WebMesageSvc\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Service References\WebMesageSvc\Service1.wsdl" />
+    <None Include="Service References\WebMesageSvc\SilverLightWithWcfTest.WebMesageSvc.HelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\StockServiceRef\" />
+    <WCFMetadataStorage Include="Service References\WebMesageSvc\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\StockServiceRef\StockService.disco" />

@@ -4,11 +4,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400"
-             xmlns:viewmodels="clr-namespace:SilverLightWithWcfTest">
-<UserControl.Resources>
-    <viewmodels:StockServiceViewModel x:Key="StockVm"/>
-</UserControl.Resources>
+    d:DesignHeight="300"
+             xmlns:viewmodels="clr-namespace:SilverLightWithWcfTest" Width="611.586">
+    <UserControl.Resources>
+        <viewmodels:StockServiceViewModel x:Key="StockVm"/>
+    </UserControl.Resources>
     <Grid DataContext="{Binding Source={StaticResource StockVm}}" x:Name="LayoutRoot" Background="White">
         <StackPanel>
             <sdk:DataGrid ItemsSource="{Binding StockPricesCollection, Mode=TwoWay}" AutoGenerateColumns="False" Height="223">
@@ -20,7 +20,11 @@
                     <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding Path=TimeStamp, Mode=TwoWay}" Width="Auto" Header="Time"/>
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
-            <Button Width="100" Height="24" Command="{Binding GetStockPricesCommand}">Get Stock Prices</Button>
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="5" Width="100" Height="24" Command="{Binding GetStockPricesCommand}">Get Stock Prices</Button>
+                <Button Margin="5" Width="150" Height="24" Command="{Binding GetWebMessageCommand}">Get Web Service Message</Button>
+                <TextBlock Margin="5" Width="225" Name="TxtMessage" Text="{Binding WebMessage, Mode=TwoWay}"></TextBlock>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

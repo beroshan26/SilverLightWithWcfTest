@@ -6,12 +6,18 @@
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
+                <binding name="Service1Soap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
             </basicHttpBinding>
         </bindings>
         <client>
             <endpoint address="http://localhost:2577/StockService.svc" binding="basicHttpBinding"
                 bindingConfiguration="BasicHttpBinding_IStockService" contract="StockServiceRef.IStockService"
                 name="BasicHttpBinding_IStockService" />
+            <endpoint address="http://localhost:4401/Service1.asmx" binding="basicHttpBinding"
+                bindingConfiguration="Service1Soap" contract="WebMesageSvc.Service1Soap"
+                name="Service1Soap" />
         </client>
     </system.serviceModel>
 </configuration>

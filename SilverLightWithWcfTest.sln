@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverLightWithWcfTest", "SilverLightWithWcfTest\SilverLightWithWcfTest.csproj", "{EFDFAC4E-00C9-445D-8169-CCE4FAF0AC2B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D3B97000-8E34-4EA7-8180-1BEE1B598D75} = {D3B97000-8E34-4EA7-8180-1BEE1B598D75}
+		{0C094FE4-3CC7-4B49-9E6D-413B35970411} = {0C094FE4-3CC7-4B49-9E6D-413B35970411}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverLightWithWcfTest.Web", "SilverLightWithWcfTest.Web\SilverLightWithWcfTest.Web.csproj", "{20F0A5B4-82D7-4518-A14A-299A04DD7DCB}"
@@ -13,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockPriceWcfService", "StockPriceWcfService\StockPriceWcfService.csproj", "{D3B97000-8E34-4EA7-8180-1BEE1B598D75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockServiceLibrary", "StockServiceLibrary\StockServiceLibrary.csproj", "{50107C8E-B546-4A21-BE1C-66E100564307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceForSilverLight", "WebServiceForSilverLight\WebServiceForSilverLight.csproj", "{0C094FE4-3CC7-4B49-9E6D-413B35970411}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +39,10 @@ Global
 		{50107C8E-B546-4A21-BE1C-66E100564307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50107C8E-B546-4A21-BE1C-66E100564307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50107C8E-B546-4A21-BE1C-66E100564307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C094FE4-3CC7-4B49-9E6D-413B35970411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C094FE4-3CC7-4B49-9E6D-413B35970411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C094FE4-3CC7-4B49-9E6D-413B35970411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C094FE4-3CC7-4B49-9E6D-413B35970411}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
