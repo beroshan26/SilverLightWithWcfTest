@@ -67,6 +67,11 @@ namespace SilverLightWithWcfTest
 
         void client_GetStockPricesCompleted(object sender, GetStockPricesCompletedEventArgs e)
         {
+            Deployment.Current.Dispatcher.BeginInvoke(() => ProcessOnUiThread(e));
+        }
+
+        private void ProcessOnUiThread(GetStockPricesCompletedEventArgs e)
+        {
             e.Result.ToList().ForEach(a =>
             {
                 if (_stockPricesColl.FirstOrDefault(s => s.Name == a.Name) == null)
@@ -85,7 +90,6 @@ namespace SilverLightWithWcfTest
                     _stockPricesColl[index].TimeStamp = a.TimeStamp;
                 }
             });
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
