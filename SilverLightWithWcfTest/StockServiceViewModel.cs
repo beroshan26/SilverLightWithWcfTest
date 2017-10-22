@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using SilverLightWithWcfTest.StockServiceRef;
 
 namespace SilverLightWithWcfTest
@@ -23,6 +24,8 @@ namespace SilverLightWithWcfTest
 
         private ObservableCollection<StockPriceContract> _stockPricesColl;
 
+        private DispatcherTimer _timer;
+
         public ObservableCollection<StockPriceContract> StockPricesCollection
         {
             get { return _stockPricesColl; }
@@ -33,21 +36,17 @@ namespace SilverLightWithWcfTest
             }
         }
 
-        private StockPriceContract _stockPrice;
-        public StockPriceContract StockPrice
-        {
-            get { return _stockPrice; }
-            set
-            {
-                _stockPrice = value;
-                NotifyPropertyChanged("StockPrice");
-            }
-        }
-
-
-        public StockServiceViewModel()
+       public StockServiceViewModel()
         {
             StockPricesCollection = new ObservableCollection<StockPriceContract>();
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(2);
+            _timer.Tick += _timer_Tick;
+        }
+
+        void _timer_Tick(object sender, EventArgs e)
+        {
+            _client.GetStockPricesAsync();
         }
         public ICommand GetStockPricesCommand
         {
@@ -58,7 +57,7 @@ namespace SilverLightWithWcfTest
                     _getStockPricesCommand = new RelayCommand(a =>
                     {
                         _client.GetStockPricesCompleted += client_GetStockPricesCompleted; 
-                        _client.GetStockPricesAsync();
+                        _timer.Start();
                     });
                 }
                 return _getStockPricesCommand;
@@ -68,8 +67,24 @@ namespace SilverLightWithWcfTest
 
         void client_GetStockPricesCompleted(object sender, GetStockPricesCompletedEventArgs e)
         {
-            e.Result.ToList().ForEach(a=>
-                _stockPricesColl.Add(a));
+            e.Result.ToList().ForEach(a =>
+            {
+                if (_stockPricesColl.FirstOrDefault(s => s.Name == a.Name) == null)
+                {
+                    _stockPricesColl.Add(a);
+                }
+                else
+                {
+                    var stock = _stockPricesColl.First(s => s.Name == a.Name);
+                    var index = _stockPricesColl.IndexOf(stock);
+                    _stockPricesColl[index].Name = a.Name;
+                    _stockPricesColl[index].OpenPrice = a.OpenPrice;
+                    _stockPricesColl[index].ClosePrice = a.ClosePrice;
+                    _stockPricesColl[index].TradedVolume = a.TradedVolume;
+                    _stockPricesColl[index].LastTradedPrice = a.LastTradedPrice;
+                    _stockPricesColl[index].TimeStamp = a.TimeStamp;
+                }
+            });
 
         }
 

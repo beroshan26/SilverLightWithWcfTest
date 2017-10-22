@@ -33,5 +33,9 @@ namespace StockServiceLibrary
         [DataMember]
         //Volume of the Stock
         public decimal? TradedVolume { get; set; }
+
+        [DataMember]
+        //Volume of the Stock
+        public DateTime TimeStamp { get; set; }
     }
 }

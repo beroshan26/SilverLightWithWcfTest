@@ -30,6 +30,8 @@ namespace SilverLightWithWcfTest.StockServiceRef {
         
         private string SymbolField;
         
+        private System.DateTime TimeStampField;
+        
         private System.Nullable<decimal> TradedVolumeField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -93,6 +95,19 @@ namespace SilverLightWithWcfTest.StockServiceRef {
                 if ((object.ReferenceEquals(this.SymbolField, value) != true)) {
                     this.SymbolField = value;
                     this.RaisePropertyChanged("Symbol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeStamp {
+            get {
+                return this.TimeStampField;
+            }
+            set {
+                if ((this.TimeStampField.Equals(value) != true)) {
+                    this.TimeStampField = value;
+                    this.RaisePropertyChanged("TimeStamp");
                 }
             }
         }

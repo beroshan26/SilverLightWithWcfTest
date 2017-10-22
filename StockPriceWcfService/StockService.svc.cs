@@ -78,13 +78,13 @@ namespace StockPriceWcfService
 
                         stockPrice.OpenPrice = GetDecimalValue("o", stockColumns, fieldsToFetch);
 
-                        stockPrice.ClosePrice = GetDecimalValue("c", stockColumns, fieldsToFetch);
+                        stockPrice.ClosePrice = GetDecimalValue("l1", stockColumns, fieldsToFetch);
 
                         stockPrice.TradedVolume = GetDecimalValue("v", stockColumns, fieldsToFetch);
 
                         stockPrice.LastTradedPrice = GetDecimalValue("l1", stockColumns, fieldsToFetch);
 
-                        //stockPrice.TimeStamp = DateTime.Now;
+                        stockPrice.TimeStamp = DateTime.Now;
 
                         sotckPricesrices.Add(stockPrice);
                     }

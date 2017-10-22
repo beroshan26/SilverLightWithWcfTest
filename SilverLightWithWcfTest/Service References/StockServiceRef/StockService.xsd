@@ -13,6 +13,7 @@
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OpenPrice" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="Symbol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
       <xs:element minOccurs="0" name="TradedVolume" nillable="true" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>

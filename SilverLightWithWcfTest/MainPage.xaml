@@ -17,6 +17,7 @@
                     <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding Path=OpenPrice, Mode=TwoWay}" Width="Auto" Header="Open Price"/>
                     <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding Path=ClosePrice, Mode=TwoWay}" Width="Auto" Header="Close Price"/>
                     <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding Path=TradedVolume, Mode=TwoWay}" Width="Auto" Header="Volume"/>
+                    <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding Path=TimeStamp, Mode=TwoWay}" Width="Auto" Header="Time"/>
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
             <Button Width="100" Height="24" Command="{Binding GetStockPricesCommand}">Get Stock Prices</Button>
